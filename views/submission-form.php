@@ -119,6 +119,14 @@ else :
 			<?php } ?>
 			
 		</fieldset>
+
+		<?php } if ($usp_options['usp_test'] == 'show' || $usp_options['usp_test'] == 'optn') { ?>
+		
+		<fieldset class="usp-test">
+			<label for="user-submitted-test"><?php esc_html_e('Post Test', 'usp'); ?></label>
+			<input id="user-submitted-test" name="user-submitted-test" type="text" value="" placeholder="<?php esc_attr_e('Post Test', 'usp'); ?>"<?php if (usp_check_required('usp_test')) echo $usp_required; ?> class="usp-input">
+		</fieldset>
+
 		<?php } if ($usp_recaptcha_public && $usp_recaptcha_private && $usp_recaptcha_display == 'show' && $usp_recaptcha_version == 2) { ?>
 		
 		<fieldset class="usp-recaptcha">

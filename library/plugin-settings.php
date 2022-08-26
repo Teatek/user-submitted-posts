@@ -975,6 +975,7 @@ function usp_validate_options($input) {
 	if (isset($input['usp_question']))         $input['usp_question']         = wp_filter_nohtml_kses($input['usp_question']);         else $input['usp_question']         = null;
 	if (isset($input['usp_captcha']))          $input['usp_captcha']          = wp_filter_nohtml_kses($input['usp_captcha']);          else $input['usp_captcha']          = null;
 	if (isset($input['usp_content']))          $input['usp_content']          = wp_filter_nohtml_kses($input['usp_content']);          else $input['usp_content']          = null;
+	if (isset($input['usp_test']))          $input['usp_test']          = wp_filter_nohtml_kses($input['usp_test']);          else $input['usp_test']          = null;
 	if (isset($input['usp_email_address']))    $input['usp_email_address']    = wp_filter_nohtml_kses($input['usp_email_address']);    else $input['usp_email_address']    = null;
 	if (isset($input['usp_email_from']))       $input['usp_email_from']       = wp_filter_nohtml_kses($input['usp_email_from']);       else $input['usp_email_from']       = null;
 	if (isset($input['usp_use_cat_id']))       $input['usp_use_cat_id']       = wp_filter_nohtml_kses($input['usp_use_cat_id']);       else $input['usp_use_cat_id']       = null;
@@ -1228,6 +1229,7 @@ function usp_render_form() {
 										echo usp_form_field_options(array('usp_tags',     esc_html__('Post Tags',     'usp')));
 										echo usp_form_field_options(array('usp_category', esc_html__('Post Category', 'usp')));
 										echo usp_form_field_options(array('usp_content',  esc_html__('Post Content',  'usp')));
+										echo usp_form_field_options(array('usp_test',  esc_html__('Post Test',  'usp')));
 										
 										echo usp_form_field_options_custom();
 										echo usp_form_field_options_captcha();

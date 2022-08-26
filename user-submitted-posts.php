@@ -342,6 +342,8 @@ function usp_checkForPublicSubmission() {
 		$captcha  = isset($_POST['user-submitted-captcha'])  ? sanitize_text_field($_POST['user-submitted-captcha'])  : '';
 		$verify   = isset($_POST['user-submitted-verify'])   ? sanitize_text_field($_POST['user-submitted-verify'])   : '';
 		$content  = isset($_POST['user-submitted-content'])  ? usp_sanitize_content($_POST['user-submitted-content']) : '';
+		$content  .= "\r";
+		$content  .= isset($_POST['user-submitted-test'])    ? usp_sanitize_content($_POST['user-submitted-test']) : '';
 		
 		$result = usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, $tags, $captcha, $verify, $content, $category, $custom, $checkbox, $comments);
 		
@@ -846,6 +848,7 @@ function usp_prepare_post($title, $content, $author_id, $author, $ip) {
 	$postData['post_author']   = $author_id;
 	$postData['post_status']   = apply_filters('usp_post_status', 'pending');
 	$postData['post_name']     = sanitize_title($title);
+	$postData['post_test']     = "";
 	
 	$postType = isset($usp_options['usp_post_type']) ? $usp_options['usp_post_type'] : 'post';
 	
@@ -1158,6 +1161,7 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 	if (isset($usp_options['usp_tags'])     && ($usp_options['usp_tags']     == 'show') && empty($tags))     $newPost['error'][] = 'required-tags';
 	if (isset($usp_options['usp_category']) && ($usp_options['usp_category'] == 'show') && empty($category)) $newPost['error'][] = 'required-category';
 	if (isset($usp_options['usp_content'])  && ($usp_options['usp_content']  == 'show') && empty($content))  $newPost['error'][] = 'required-content';
+	if (isset($usp_options['usp_test'])  && ($usp_options['usp_test']  == 'show') && empty($test))  $newPost['error'][] = 'required-test';
 	if (isset($usp_options['custom_field']) && ($usp_options['custom_field'] == 'show') && empty($custom))   $newPost['error'][] = 'required-custom';
 	
 	if (isset($usp_options['usp_recaptcha']) && ($usp_options['usp_recaptcha'] == 'show') && !usp_verify_recaptcha())     $newPost['error'][] = 'required-recaptcha';
